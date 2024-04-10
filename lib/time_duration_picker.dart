@@ -17,6 +17,8 @@ class TimeDurationPicker extends StatelessWidget {
   final BoxDecoration? knobBackgroundDecoration;
   final BoxDecoration? clockDecoration;
   final TextStyle? clockTextStyle;
+  final TimeOfDay? start;
+  final TimeOfDay? end;
 
   const TimeDurationPicker(
       {Key? key,
@@ -30,7 +32,9 @@ class TimeDurationPicker extends StatelessWidget {
       this.knobBackgroundDecoration,
       this.clockDecoration,
       this.clockTextStyle,
-      this.setDurationCallback})
+      this.setDurationCallback,
+      this.end,
+      this.start})
       : super(key: key);
 
   @override
@@ -64,6 +68,8 @@ class TimeDurationPicker extends StatelessWidget {
                   iconColor: iconColor,
                   knobDecoration: knobDecoration,
                   setDurationCallback: setDurationCallback,
+                  end: end,
+                  start: start,
                 ),
                 Padding(
                   padding: EdgeInsets.all(diameter * gapRatio),
