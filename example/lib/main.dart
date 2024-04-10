@@ -25,9 +25,9 @@ class SetAlarm extends StatefulWidget {
 }
 
 class _SetAlarmState extends State<SetAlarm> {
-  String alarmTime = "12:00 PM";
-  String bedTime = "12:00 AM";
-  String sleepDuration = "12 hr 00 min";
+  String alarmTime = "8:10 AM";
+  String bedTime = "10:30 AM";
+  String sleepDuration = "??";
   @override
   Widget build(BuildContext context) {
     double smallerMarginRatio = 0.025;
@@ -49,6 +49,8 @@ class _SetAlarmState extends State<SetAlarm> {
               children: [
                 SizedBox(height: size.height * smallerMarginRatio),
                 TimeDurationPicker(
+                  start: const TimeOfDay(hour: 8, minute: 10),
+                  end: const TimeOfDay(hour: 10, minute: 30),
                   diameter: size.width * 0.775,
                   icon1Data: Icons.notifications_none,
                   icon2Data: Icons.bed,

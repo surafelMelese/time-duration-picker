@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 
 import 'knob_clipper.dart';
 
+// ignore: constant_identifier_names
+const MINUTES = 60 * 24;
+
 class Knob extends StatefulWidget {
   final double radius;
   final double innerRadiusRatio;
@@ -16,6 +19,9 @@ class Knob extends StatefulWidget {
   final Color iconColor;
   final void Function(String)? setDurationCallback;
   final BoxDecoration? knobDecoration;
+  final TimeOfDay? start;
+  final TimeOfDay? end;
+
   const Knob(
       {Key? key,
       required this.radius,
@@ -27,7 +33,9 @@ class Knob extends StatefulWidget {
       required this.icon2Data,
       required this.iconColor,
       this.setDurationCallback,
-      this.knobDecoration})
+      this.knobDecoration,
+      this.end,
+      this.start})
       : super(key: key);
 
   @override
@@ -76,8 +84,19 @@ class _KnobState extends State<Knob> {
         centerOffset);
     WidgetsBinding.instance
         .addPostFrameCallback((_) => _initializeOffsetsAndAngles(context));
-    icon1Angle = 0;
-    icon2Angle = pi;
+    if (widget.start == null) {
+      icon1Angle = 0;
+    } else {
+      icon1Angle =
+          (widget.start!.hour * 60 + widget.start!.minute) / MINUTES * 2 * pi;
+    }
+
+    if (widget.end == null) {
+      icon2Angle = pi;
+    } else {
+      icon2Angle =
+          (widget.end!.hour * 60 + widget.end!.minute) / MINUTES * 2 * pi;
+    }
   }
 
   @override
